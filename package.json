@@ -1,0 +1,22 @@
+{
+  "name": "seqz-ui",
+  "version": "0.0.0",
+  "description": "",
+  "main": "seqz-ui.js",
+  "dependencies": {
+    "osc": "2.3.1",
+    "unix-dgram": "2.0.3"
+  },
+  "scripts": {
+    "build-seqz": "git submodule init && git submodule update && cd seqz && make"
+  },
+  "author": {
+    "name": "Jean-Emmanuel Doucet",
+    "email": "jean-emmanuel@ammd.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jean-emmanuel/open-stage-control"
+  },
+ "license": "GPL-3"
+}
