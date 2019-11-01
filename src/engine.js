@@ -20,6 +20,10 @@ class Engine extends EventEmitter {
 
         super()
 
+    }
+
+    start() {
+
         // feedback receiver
 
         this.server = unix.createSocket('unix_dgram', (message)=>{
@@ -36,13 +40,12 @@ class Engine extends EventEmitter {
         this.process = spawn(__dirname + '/../seqz/seqz', [
             '--target-url', 'osc.udp://127.0.0.1:5245',
             '--osc-port', 'osc.unix://' + CONTROL_SOCKET,
-            '--feedback-url', 'osc.unix://' + FEEDBACK_SOCKET,
-            '--stress-test'
+            '--feedback-url', 'osc.unix://' + FEEDBACK_SOCKET
         ])
 
-        this.process.stderr.on('data', (data) => {
-            console.error(`seqz error: ${data}`)
-        })
+        // this.process.stderr.on('data', (data) => {
+        //     console.error(`seqz error: ${data}`)
+        // })
 
         // node process hook
         process.on('exit', (code)=>{
@@ -70,10 +73,10 @@ class Engine extends EventEmitter {
             args
         })
 
-        this.server.send(packet, 0, packet.length, FEEDBACK_SOCKET)
+        this.server.send(packet, 0, packet.length, CONTROL_SOCKET)
 
     }
 
 }
 
-module.exports = Engine
+module.exports = new Engine()

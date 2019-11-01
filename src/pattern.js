@@ -3,37 +3,76 @@
  *
  */
 
+const Sequence = require('./sequence')
+
 class Pattern {
 
-    constructor(sequencer) {
+    constructor(column, id, options) {
 
-        this.sequencer = sequencer
+        this.parent = column
 
-        this.id = ''
-        this.length = 0
-        this.enabled = false
+        this.id = id
+        this.length = options.length
+        this.enabled = options.enabled
 
-        this.sequences = {}
+        this.sequences = []
+
+        if (options.sequences) {
+            for (var i in options.sequences) {
+                if (!options.sequences[i]) {
+                    this.sequences[i] = null
+                } else {
+                    this.addSequence(i, options.sequences[i])
+                }
+            }
+        }
 
     }
 
-    updateSequence(data) {
+    enable() {
 
-        var id = data.id
+        this.enabled = true
+        for (var s of this.sequences) {
+            if (s) s.command('enable')
+        }
 
-        if (!this.sequences[id]) return
+    }
 
-        if (data.removed) {
+    disable() {
 
-            delete this.sequences[id]
+        this.enabled = false
+        for (var s of this.sequences) {
+            if (s) s.command('disable')
+        }
 
-        } else {
+    }
 
-            Object.assign(data)
+    remove() {
+
+        for (var s of this.sequences) {
+            if (s) s.command('remove')
+        }
+        this.sequences = []
+
+    }
+
+    addSequence(i, options={}) {
+
+        this.sequences[i] = new Sequence(this, i, options)
+
+    }
+
+    removeSequence(i) {
+
+        if (this.sequences[i]) {
+
+            this.sequences[i].command('remove')
+            this.sequences[i] = null
 
         }
 
     }
 
-
 }
+
+module.exports = Pattern

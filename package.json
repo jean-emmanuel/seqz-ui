@@ -4,6 +4,7 @@
   "description": "",
   "main": "seqz-ui.js",
   "dependencies": {
+    "electron": "^7.0.0",
     "osc": "2.3.1",
     "unix-dgram": "2.0.3"
   },
@@ -18,5 +19,5 @@
     "type": "git",
     "url": "https://github.com/jean-emmanuel/open-stage-control"
   },
- "license": "GPL-3"
+  "license": "GPL-3"
 }

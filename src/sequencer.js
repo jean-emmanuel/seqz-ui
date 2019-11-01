@@ -3,39 +3,68 @@
  *
  */
 
-const Engine = require('./engine')
+const engine = require('./engine'),
+      EventEmitter = require('events'),
+      Column = require('./column')
 
-class Sequencer {
+
+class Sequencer extends EventEmitter {
 
     constructor() {
 
+        super()
 
-        this.patterns = {}
+        this.columns = []
 
         this.bpm = 120
         this.cursor = 0
         this.playing = false
         this.bypass = false
 
-        this.engine = new Engine()
+        engine.start()
+        engine.on('/status/sequencer', this.update.bind(this))
+        engine.once('/status/sequencer', ()=>{
+            this.emit('ready')
+        })
+        // engine.on('/status/sequence', console.log)
 
-        this.engine.on('/status/sequencer', this.update.bind(this))
-        this.engine.on('/status/sequence', this.updateSequence.bind(this))
+    }
+
+    command(cmd, ...args) {
+
+        engine.send('/sequencer', cmd, ...args)
 
     }
 
     update(data){
 
-        Object.assign(this, data)
+        this.bpm = data.bpm
+        this.cursor = data.cursor
+        this.playing = data.playing
+        this.bypass = data.bypass
+
+        this.emit('update')
 
     }
 
-    updateSequence(data){
 
-        var pattern = this.patterns[data.id.split('/')[1]]
-        if (pattern) pattern.updateSequence(data)
+    addColumn(i, data={}) {
+
+        this.columns[i] = new Column(this, i, data)
 
     }
+
+    removeColumn(i) {
+
+        if (this.columns[i]) {
+
+            this.columns[i].remove()
+            this.columns[i] = null
+
+        }
+
+    }
+
 
 }
 

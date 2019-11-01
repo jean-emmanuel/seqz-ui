@@ -3,34 +3,62 @@
  *
  */
 
+const engine = require('./engine')
+let  Sequencer
+
+
 class Sequence {
 
-    constructor(pattern, data) {
+    constructor(pattern, id, options) {
 
-        this.pattern = pattern
+        this.parent = pattern
 
-        this.id = data.id
-        this.address = data.address
-        this.type = data.type
-        this.note = data.note
-        this.values = data.values
+        this.id = id
+
+        this.address = options.address
+        this.type = options.type
+        this.note = options.note
+        this.values = options.values
+
+        this.write()
 
     }
 
-    data() {
+    path() {
 
-        // format sequence data for engine
+        var id = [this.id],
+            parent = this
 
-        return {
-            id: this.pattern.id + this.id,
-            length: this.pattern.length,
-            enabled: this.pattern.enabled,
-            address: this.address,
-            type: this.type,
-            note: this.note,
-            values: this.values
+        Sequencer = require('./sequencer')
+
+        while ((parent = parent.parent) && !(parent instanceof Sequencer)) {
+            id.unshift(parent.id)
         }
+
+        return '/' + id.join('/')
+
+    }
+
+    command(cmd) {
+
+        engine.send('/sequence', this.path(), cmd)
+
+    }
+
+    write() {
+
+        engine.send('/sequencer', 'write', {
+            id: this.path(),
+            length: this.parent.length || 0,
+            enabled: this.parent.enabled || false,
+            address: this.address || this.path(),
+            type: this.type || 'f',
+            note: this.note || false,
+            values: this.values || {}
+        })
 
     }
 
 }
+
+module.exports = Sequence
