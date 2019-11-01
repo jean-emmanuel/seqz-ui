@@ -20,22 +20,15 @@
 
     <div id="main">
         <nav id="tabs">
-            <a class="tab-link active" href="#sequencer">
-                Sequencer
-            </a>
-            <a class="tab-link"  href="#pianoroll">
-                Editor
-            </a>
-            <a class="tab-link" href="#settings">
-                Settings
-            </a>
+            <seqz-tablink tab="tab-sequencer" class="active">Sequencer</seqz-tablink>
+            <seqz-tablink tab="tab-editor">Editor</seqz-tablink>
+            <seqz-tablink tab="tab-settings">Settings</seqz-tablink>
         </nav>
-        <div class="tab-panel" id="sequencer">
+        <div class="tab-panel active" id="tab-sequencer">a
         </div>
-        <div class="tab-panel" id="pianoroll">
-
+        <div class="tab-panel" id="tab-editor">b
         </div>
-        <div class="tab-panel" id="settings">
+        <div class="tab-panel" id="tab-settings">c
 
         </div>
 
@@ -43,10 +36,10 @@
 
     <nav id="footerbar">
         <div id="transport-left">
-            <seqz-button class="square" icon="play" id="transport-play"></seqz-button>
-            <seqz-button class="square" icon="pause" id="transport-pause"></seqz-button>
-            <seqz-button class="square" icon="stop" id="transport-stop"></seqz-button>
-            <seqz-button class="square" icon="comment-slash" id="transport-stop"></seqz-button>
+            <seqz-button title="Play" class="square" icon="play" id="transport-play"></seqz-button>
+            <seqz-button title="Pause" class="square" icon="pause" id="transport-pause"></seqz-button>
+            <seqz-button title="Stop" class="square" icon="stop" id="transport-stop"></seqz-button>
+            <seqz-button title="Bypass" class="square" icon="comment-slash" id="transport-stop"></seqz-button>
         </div>
         <div id="transport-cursor">
 

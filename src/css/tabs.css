@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-.tab-link {
+seqz-tablink {
     display: flex;
     flex: 1;
     align-items: center;
@@ -14,7 +14,7 @@
     color: var(--color-text-fade);
 }
 
-.tab-link.active {
+seqz-tablink.active {
     background: var(--color-raised);
     box-shadow: 0 0 8px 0 rgba(0,0,0,0.1);
     color: var(--color-text);
