@@ -8,7 +8,7 @@ const {spawn} = require('child_process'),
       net = require('net'),
       unix = require('unix-dgram'),
       fs = require('fs'),
-      osc = require('osc')
+      osc = require('osc/src/osc.js')
 
 
 const FEEDBACK_SOCKET = '/tmp/seqz-ui-' + Math.random(),
@@ -37,7 +37,7 @@ class Engine extends EventEmitter {
 
         // engine process
 
-        this.process = spawn(__dirname + '/../seqz/seqz', [
+        this.process = spawn(__dirname + '/../../seqz/seqz', [
             '--target-url', 'osc.udp://127.0.0.1:5245',
             '--osc-port', 'osc.unix://' + CONTROL_SOCKET,
             '--feedback-url', 'osc.unix://' + FEEDBACK_SOCKET

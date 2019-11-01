@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.css"/>
+</head>
+
+<body>
+    <nav id="headerbar">
+        <div id="header-left">
+        </div>
+        <div id="header-title">
+            SeqZ
+        </div>
+        <div id="header-right">
+            <seqz-button icon="times-circle"></seqz-button>
+        </div>
+    </nav>
+
+    <div id="main">
+        <nav id="tabs">
+            <a class="tab-link active" href="#sequencer">
+                Sequencer
+            </a>
+            <a class="tab-link"  href="#pianoroll">
+                Pianoroll
+            </a>
+            <a class="tab-link" href="#settings">
+                Settings
+            </a>
+        </nav>
+        <div class="tab-panel" id="sequencer">
+        </div>
+        <div class="tab-panel" id="pianoroll">
+
+        </div>
+        <div class="tab-panel" id="settings">
+
+        </div>
+
+    </div>
+
+    <nav id="footerbar">
+        <div id="transport-left">
+            <seqz-button class="square" icon="play" id="transport-play"></seqz-button>
+            <seqz-button class="square" icon="pause" id="transport-pause"></seqz-button>
+            <seqz-button class="square" icon="stop" id="transport-stop"></seqz-button>
+            <seqz-button class="square" icon="comment-slash" id="transport-stop"></seqz-button>
+        </div>
+        <div id="transport-cursor">
+
+        </div>
+        <div id="transport-right">
+            <div class="input" id="transport-bpm">
+                <label for="seqz-bpm">BPM</label>
+                <input type="number" id="transport-bpm-input"/>
+            </div>
+        </div>
+    </nav>
+
+    <script type="text/javascript" src="../client/index.js"></script>
+</body>
+</html>

@@ -16,9 +16,11 @@ class Sequence {
         this.id = id
 
         this.address = options.address
-        this.type = options.type
-        this.note = options.note
-        this.values = options.values
+        this.type = options.type || 'f'
+        this.note = options.note || false
+        this.values = options.values || {}
+
+        if (!Sequencer) Sequencer = require('./sequencer')
 
         this.write()
 
@@ -29,13 +31,11 @@ class Sequence {
         var id = [this.id],
             parent = this
 
-        Sequencer = require('./sequencer')
-
         while ((parent = parent.parent) && !(parent instanceof Sequencer)) {
             id.unshift(parent.id)
         }
 
-        return '/' + id.join('/')
+        return '/' + id.join('/').replace(/\s/g, '_')
 
     }
 
@@ -49,12 +49,12 @@ class Sequence {
 
         engine.send('/sequencer', 'write', {
             id: this.path(),
-            length: this.parent.length || 0,
-            enabled: this.parent.enabled || false,
+            length: this.parent.length,
+            enabled: this.parent.enabled,
             address: this.address || this.path(),
-            type: this.type || 'f',
-            note: this.note || false,
-            values: this.values || {}
+            type: this.type,
+            note: this.note,
+            values: this.values
         })
 
     }

@@ -19,5 +19,8 @@
     "type": "git",
     "url": "https://github.com/jean-emmanuel/open-stage-control"
   },
-  "license": "GPL-3"
+  "license": "GPL-3",
+  "devDependencies": {
+    "electron-rebuild": "^1.8.6"
+  }
 }

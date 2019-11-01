@@ -12,8 +12,8 @@ class Pattern {
         this.parent = column
 
         this.id = id
-        this.length = options.length
-        this.enabled = options.enabled
+        this.length = options.length || 0
+        this.enabled = options.enabled || false
 
         this.sequences = []
 
