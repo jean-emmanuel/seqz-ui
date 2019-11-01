@@ -8,9 +8,9 @@ const engine = require('./engine'),
 
 class Column {
 
-    constructor(sequencer, id, options) {
+    constructor(set, id, options) {
 
-        this.parent = sequencer
+        this.parent = set
 
         this.id = id
         this.patterns = []
@@ -41,6 +41,8 @@ class Column {
 
         this.patterns[i] = new Pattern(this, i, options)
 
+        this.changed()
+
     }
 
     removePattern(i) {
@@ -51,6 +53,14 @@ class Column {
             this.patterns[i] = null
 
         }
+
+        this.changed()
+
+    }
+
+    changed() {
+
+        this.parent.changed()
 
     }
 

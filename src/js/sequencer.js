@@ -5,7 +5,7 @@
 
 const engine = require('./engine'),
       EventEmitter = require('events'),
-      Column = require('./column')
+      Set = require('./set')
 
 
 class Sequencer extends EventEmitter {
@@ -14,7 +14,7 @@ class Sequencer extends EventEmitter {
 
         super()
 
-        this.columns = []
+        this.sets = []
 
         this.bpm = 120
         this.cursor = 0
@@ -27,6 +27,8 @@ class Sequencer extends EventEmitter {
             this.emit('ready')
         })
         // engine.on('/status/sequence', console.log)
+
+        this.hasChangedFlag = false
 
     }
 
@@ -48,22 +50,42 @@ class Sequencer extends EventEmitter {
     }
 
 
-    addColumn(i, data={}) {
+    addSet(i, data={}) {
 
-        this.columns[i] = new Column(this, i, data)
+        this.sets[i] = new Set(this, i, data)
+
+        this.changed()
 
     }
 
-    removeColumn(i) {
+    removeSet(i) {
 
-        if (this.columns[i]) {
+        if (this.sets[i]) {
 
-            this.columns[i].remove()
-            this.columns[i] = null
+            this.sets[i].remove()
+            this.sets[i] = null
 
         }
 
+        this.changed()
+
+
     }
+
+    hasChanged() {
+
+        var flag = this.hasChangedFlag
+        this.hasChangedFlag = false
+        return flag
+
+    }
+
+    changed() {
+
+        this.hasChangedFlag = true
+
+    }
+
 
 
 }

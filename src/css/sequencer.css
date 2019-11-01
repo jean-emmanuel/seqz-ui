@@ -1,0 +1,81 @@
+#tab-sequencer {
+
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#set-list {
+
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    background: var(--color-behind);
+    border-right: 1px solid var(--color-border);
+    width:200px;
+}
+
+
+#sequencer-container {
+
+    flex:1;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    overflow-y: auto;
+
+    padding: 4px;
+
+}
+
+
+.column {
+
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    flex-shrink: 0;
+    padding: 4px;
+    margin-right:4px;
+    height: 100%;
+    border: 1px solid var(--color-border);
+    background: var(--color-column);
+
+}
+
+.pattern {
+
+    flex:1;
+    max-height: 60px;
+    background: var(--color-raised);
+    margin: 4px;
+    position: relative;
+    overflow:hidden;
+    opacity: 0.5;
+}
+
+.pattern.empty {
+    background: transparent;
+    border: 1px solid var(--color-raised);
+    opacity: 1;
+}
+
+.pattern.enabled {
+    opacity: 1;
+    /* background: teal; */
+}
+
+.pattern .cursor {
+    position: absolute;
+    height: 100%;
+    left:0;
+    top:0;
+    transform: translate3d(0, 0, 0);
+    border-left: 2px solid var(--color-border);
+    width: 100%;
+}
+
+.pattern.enabled .cursor{
+    border-color: teal;
+}

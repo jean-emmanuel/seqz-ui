@@ -36,6 +36,8 @@ class Pattern {
             if (s) s.command('enable')
         }
 
+        this.changed()
+
     }
 
     disable() {
@@ -44,6 +46,8 @@ class Pattern {
         for (var s of this.sequences) {
             if (s) s.command('disable')
         }
+
+        this.changed()
 
     }
 
@@ -70,6 +74,12 @@ class Pattern {
             this.sequences[i] = null
 
         }
+
+    }
+
+    changed() {
+
+        this.parent.changed()
 
     }
 

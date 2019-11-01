@@ -3,6 +3,10 @@ console.log('gogogo')
 const {remote} = require('electron'),
       sequencer = remote.getGlobal('seq')
 
+
+const SequencerPanel = require('../client/sequencer'),
+      sequencerPanel = new SequencerPanel(sequencer)
+
 require('../client/components/index')
 
 
@@ -20,6 +24,9 @@ bpm.value = sequencer.bpm
 function loop() {
 
     transport.innerHTML = sequencer.cursor
+
+    sequencerPanel.update()
+
     requestAnimationFrame(loop)
 
 }

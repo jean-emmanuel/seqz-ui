@@ -7,8 +7,10 @@ global.seq = seq
 
 seq.on('ready', ()=>{
 
-    seq.addColumn(0, {
+    for (var i=0; i<10; i++) {
+    seq.addSet(i, {columns:[{
         patterns: [
+            null,
             {
                 enabled: true,
                 length: 192,
@@ -17,18 +19,28 @@ seq.on('ready', ()=>{
                         values: {0:0, 96: 1}
                     }
                 ]
+            },
+            {
+                enabled: false,
+                length: 400,
+                sequences:[
+                    {
+                        values: {0:0, 96: 1}
+                    }
+                ]
             }
         ]
-    })
+    }]})
+    }
 
     seq.command('play')
 
     setTimeout(()=>{
 
-        seq.columns[0].patterns[0].disable()
+        if (seq.sets[0].columns[0].patterns[0]) seq.columns[0].patterns[0].disable()
         setTimeout(()=>{
 
-            seq.columns[0].patterns[0].enable()
+            if (seq.sets[0].columns[0].patterns[0]) seq.columns[0].patterns[0].enable()
 
         }, 1000)
 
