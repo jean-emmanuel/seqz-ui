@@ -1,0 +1,13 @@
+:root {
+
+    --color-bg:  #F4F4F4;
+    --color-bar: #EAEAEA;
+    --color-behind: #DDD;
+    --color-raised: #FAFAFA;
+    --color-border: rgba(0, 0, 0, 0.1);
+
+    --color-text: #333333;
+    --color-text-fade: #555555;
+    --color-text-strong: #000000;
+
+}

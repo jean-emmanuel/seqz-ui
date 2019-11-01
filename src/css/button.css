@@ -1,0 +1,21 @@
+seqz-button.square {
+    padding: 6px;
+    border: 1px solid var(--color-border);
+    font-size: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:7px;
+    background: var(--color-raised);
+}
+seqz-button:hover {
+    color: var(--color-text-fade);
+}
+
+seqz-button:active {
+    color: var(--color-text-strong);
+}
+
+seqz-button.square:active {
+    background: var(--color-behind);
+}

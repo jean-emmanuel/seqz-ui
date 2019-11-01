@@ -15,11 +15,18 @@ function createWindow () {
     height: 600,
     autoHideMenuBar: true,
     frame: false,
+    type:'splash',
+    show:false,
     webPreferences: {
         backgroundColor: '#fafafa',
         nodeIntegration: true
     }
   })
+
+  mainWindow.once('ready-to-show', ()=>{
+      mainWindow.show()
+  })
+
 
   // and load the index.html of the app.
   mainWindow.loadFile(__dirname + '/../html/index.html')

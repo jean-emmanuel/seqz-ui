@@ -1,0 +1,17 @@
+* {
+    margin:0;
+    padding:0;
+    cursor: default;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    font: inherit;
+    text-decoration: inherit;
+}
+
+html, body {
+    height: 100%;
+}

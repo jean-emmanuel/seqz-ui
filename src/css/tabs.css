@@ -1,0 +1,30 @@
+#tabs {
+    display: flex;
+    height: 35px;
+    background: var(--color-behind);
+    border-bottom:1px solid var(--color-border);
+}
+
+.tab-link {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-link.active {
+    background: var(--color-raised);
+}
+
+.tab-panel {
+
+    display: none;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.tab-panel.active {
+    display: flex;
+}
