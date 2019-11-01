@@ -11,6 +11,8 @@
 
     -webkit-user-select: none;
     -webkit-app-region: drag;
+
+    flex-shrink: 0;
 }
 
 #header-title {
