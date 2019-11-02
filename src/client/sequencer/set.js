@@ -1,4 +1,5 @@
-const html = require('nanohtml')
+const html = require('nanohtml'),
+      engine = require('../engine')
 
 class Set {
 
@@ -13,7 +14,11 @@ class Set {
         `
         this.id = data.id
         this.title = this.html.getElementsByClassName('title')[0]
-        this.title.innerHTML = data.id
+        this.title.innerHTML = `${data.id}: ${data.label}`
+
+        this.html.addEventListener('mousedown', ()=>{
+            engine.setActiveSet(this.id)
+        })
 
     }
 

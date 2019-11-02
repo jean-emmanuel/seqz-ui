@@ -13,6 +13,7 @@ class Column {
         this.parent = set
 
         this.id = id
+        this.label = options.label || 'Untitled'
         this.patterns = []
 
         if (options.patterns) {

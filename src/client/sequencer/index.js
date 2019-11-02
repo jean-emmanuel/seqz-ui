@@ -1,12 +1,12 @@
 const Column = require('./column'),
-      Set = require('./set')
+      Set = require('./set'),
+      engine = require('../engine')
 
 class SequencerPanel {
 
-    constructor(seq) {
+    constructor() {
 
-        this.seq = seq
-        this.set = 0
+        this.activeSet = 0
 
         this.leftPanel = document.getElementById('set-list')
         this.rightPanel = document.getElementById('sequencer-container')
@@ -18,9 +18,9 @@ class SequencerPanel {
 
     update() {
 
-        if (this.seq.hasChanged()) this.build()
+        if (engine.hasChanged()) this.build()
 
-        var cursor = this.seq.cursor
+        var cursor = engine.cursor
         for (var column of this.columns) {
             column.updateCursors(cursor)
         }
@@ -30,11 +30,11 @@ class SequencerPanel {
     build() {
 
         // set list
-        this.set = this.seq.set
+        this.activeSet = engine.activeSet
         this.leftPanel.innerHTML = ''
-        for (let sdata of this.seq.sets) {
+        for (let sdata of engine.sets) {
             var set = new Set(this, sdata)
-            if (this.set == set.id) set.activate()
+            if (this.activeSet == set.id) set.activate()
             this.leftPanel.appendChild(set.html)
         }
 
@@ -43,7 +43,7 @@ class SequencerPanel {
         this.rightPanel.innerHTML = ''
         this.columns = []
 
-        var set = this.seq.sets[this.set]
+        var set = engine.sets[this.activeSet]
         if (!set) return
 
         for (let cdata of set.columns) {
@@ -61,4 +61,4 @@ class SequencerPanel {
 
 }
 
-module.exports = SequencerPanel
+module.exports = new SequencerPanel()

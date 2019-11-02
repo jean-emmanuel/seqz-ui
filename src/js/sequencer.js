@@ -15,7 +15,7 @@ class Sequencer extends EventEmitter {
         super()
 
         this.sets = []
-        this.set = 0
+        this.activeSet = 0
 
         this.bpm = 120
         this.cursor = 0
@@ -50,6 +50,18 @@ class Sequencer extends EventEmitter {
 
     }
 
+    setActiveSet(i) {
+
+        if (this.sets[i]) {
+
+            this.activeSet = i
+
+            this.changed()
+
+
+        }
+
+    }
 
     addSet(i, data={}) {
 

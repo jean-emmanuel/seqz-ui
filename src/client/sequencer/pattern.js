@@ -26,20 +26,16 @@ class Pattern {
 
         this.empty = !data
 
+        this.html.classList.toggle('empty', this.empty)
+
         if (!this.empty) {
 
-            this.title.innerHTML = data.id
+            this.title.innerHTML = `${data.id}: ${data.label}`
 
             this.length = data.length
             this.enabled = data.enabled
 
-            if (this.enabled) {
-                this.html.classList.add('enabled')
-            }
-
-        } else {
-
-            this.html.classList.add('empty')
+            this.html.classList.toggle('enabled', this.enabled)
 
         }
 

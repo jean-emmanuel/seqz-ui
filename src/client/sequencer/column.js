@@ -22,7 +22,7 @@ class Column {
 
         if (!this.empty) {
 
-            this.title.innerHTML = data.id
+            this.title.innerHTML = `${data.id}: ${data.label}`
 
             for (let pdata of data.patterns) {
 
@@ -31,10 +31,6 @@ class Column {
                 this.wrapper.appendChild(pattern.html)
 
             }
-
-        } else {
-
-            this.html.classList.add('empty')
 
         }
 

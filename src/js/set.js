@@ -13,6 +13,7 @@ class Set {
         this.parent = sequencer
 
         this.id = id
+        this.label = options.label || 'Untitled'
         this.columns = []
 
         if (options.columns) {

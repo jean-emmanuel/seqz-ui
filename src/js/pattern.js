@@ -12,6 +12,7 @@ class Pattern {
         this.parent = column
 
         this.id = id
+        this.label = options.label || 'Untitled'
         this.length = options.length || 0
         this.enabled = options.enabled || false
 
