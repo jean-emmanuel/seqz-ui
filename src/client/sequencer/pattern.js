@@ -9,14 +9,20 @@ class Pattern {
         this.html = html`
             <div class="pattern">
                 <div class="title"></div>
-                <div class="preview">
-                    <div class="cursor"></div>
-                </div>
+                <canvas class="preview">
+                </canvas>
             </div>
         `
         this.title = this.html.getElementsByClassName('title')[0]
         this.preview = this.html.getElementsByClassName('preview')[0]
-        this.cursor = this.html.getElementsByClassName('cursor')[0]
+        this.preview.height = 44
+        this.preview.width = 120
+        this.ctx = this.preview.getContext('2d', {
+            singleBuffered: true,
+            lowLatency: true,
+            desynchronized: true,
+            alpha: true
+        })
 
         this.empty = !data
 
@@ -43,8 +49,15 @@ class Pattern {
 
         if (this.empty) return
 
-        var percent = Math.round(100 * (cursor % this.length) / this.length)
-        this.cursor.style.transform = 'translate3d('+ percent +'%,0,0)'
+        var x = Math.round(this.preview.width * (cursor % this.length) / this.length)
+
+        this.ctx.clearRect(0,0,this.preview.width, this.preview.height)
+
+        this.ctx.lineWidth = 2
+        this.ctx.beginPath()
+        this.ctx.moveTo(x, 0)
+        this.ctx.lineTo(x, this.preview.height)
+        this.ctx.stroke()
 
     }
 

@@ -1,5 +1,3 @@
-console.log('gogogo')
-
 const {remote} = require('electron'),
       sequencer = remote.getGlobal('seq'),
       log = remote.getGlobal('console').log
@@ -23,7 +21,7 @@ bpm.value = sequencer.bpm
 var t = Date.now()
 
 function loop() {
-
+    //
     // var tt = Date.now()
     // var fps = 1000/(tt-t)
     // if (fps<45) {

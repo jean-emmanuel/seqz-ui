@@ -36,6 +36,8 @@ seq.on('ready', ()=>{
     }
 
     seq.addSet(0, set)
+    seq.addSet(1, set)
+    seq.addSet(2, set)
 
     seq.command('play')
 

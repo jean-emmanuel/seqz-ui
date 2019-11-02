@@ -15,6 +15,7 @@ class Sequencer extends EventEmitter {
         super()
 
         this.sets = []
+        this.set = 0
 
         this.bpm = 120
         this.cursor = 0

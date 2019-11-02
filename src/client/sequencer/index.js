@@ -1,4 +1,5 @@
-const Column = require('./column')
+const Column = require('./column'),
+      Set = require('./set')
 
 class SequencerPanel {
 
@@ -7,7 +8,8 @@ class SequencerPanel {
         this.seq = seq
         this.set = 0
 
-        this.html = document.getElementById('sequencer-container')
+        this.leftPanel = document.getElementById('set-list')
+        this.rightPanel = document.getElementById('sequencer-container')
         this.columns = []
 
         this.build()
@@ -27,9 +29,19 @@ class SequencerPanel {
 
     build() {
 
-        this.html.innerHTML = ''
-        this.columns = []
+        // set list
+        this.set = this.seq.set
+        this.leftPanel.innerHTML = ''
+        for (let sdata of this.seq.sets) {
+            var set = new Set(this, sdata)
+            if (this.set == set.id) set.activate()
+            this.leftPanel.appendChild(set.html)
+        }
 
+
+        // current set columns
+        this.rightPanel.innerHTML = ''
+        this.columns = []
 
         var set = this.seq.sets[this.set]
         if (!set) return
@@ -39,9 +51,10 @@ class SequencerPanel {
             var column = new Column(this, cdata)
 
             this.columns.push(column)
-            this.html.appendChild(column.html)
+            this.rightPanel.appendChild(column.html)
 
         }
+
 
     }
 

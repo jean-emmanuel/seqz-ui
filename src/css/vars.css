@@ -4,7 +4,9 @@
     --color-bar: #EAEAEA;
     --color-behind: #DDD;
     --color-raised: #FAFAFA;
+
     --color-border: rgba(0, 0, 0, 0.1);
+    --color-border-strong: rgba(0, 0, 0, 0.2);
 
     --color-column: #EEE;
 
