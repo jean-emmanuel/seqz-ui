@@ -5,6 +5,7 @@
   "main": "seqz-ui.js",
   "dependencies": {
     "electron": "^7.0.0",
+    "nanohtml": "^1.9.0",
     "osc": "2.3.1",
     "unix-dgram": "2.0.3"
   },
