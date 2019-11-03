@@ -1,7 +1,7 @@
 const Sequencer = require('./src/js/sequencer')
 
 const seq = new Sequencer()
-require('./src/js/electron')
+require('./src/server/electron')
 global.seq = seq
 
 
