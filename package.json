@@ -10,6 +10,7 @@
     "unix-dgram": "2.0.3"
   },
   "scripts": {
+    "start": "electron .",
     "build-seqz": "git submodule init && git submodule update && cd seqz && make"
   },
   "author": {
