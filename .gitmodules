@@ -1,0 +1,3 @@
+[submodule "seqzero"]
+	path = seqzero
+	url = git@github.com:jean-emmanuel/seqzero.git
