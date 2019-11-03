@@ -32,8 +32,8 @@
 
 .set-item.active {
     opacity: 1;
-    background: var(--color-text);
-    color: var(--color-raised);
+    background: var(--color-active);
+    color: var(--color-text-on-active);
 
 }
 
@@ -126,24 +126,10 @@
 
 .pattern.enabled {
     opacity: 1;
-    border-color: var(--color-text);
+    border-color: var(--color-active);
 }
 
 .pattern.enabled > .title {
-    background: var(--color-text);
-    color: var(--color-raised);
-}
-
-.pattern .cursor {
-    position: absolute;
-    height: 100%;
-    left:0;
-    top:0;
-    transform: translate3d(0, 0, 0);
-    border-left: 2px solid var(--color-border);
-    width: 100%;
-}
-
-.pattern.enabled .cursor{
-    border-color: var(--color-active);
+    background: var(--color-active);
+    color: var(--color-text-on-active);
 }
