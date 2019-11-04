@@ -17,19 +17,31 @@ class Column {
         this.wrapper = this.html.getElementsByClassName('wrapper')[0]
 
         this.patterns = []
+        this.updateData(data)
 
-        this.empty = !data
+    }
 
-        if (!this.empty) {
+    updateData(data){
+
+        this.data = data
+
+        if (this.data) {
 
             this.title.innerHTML = `${data.id}: ${data.label}`
 
-            for (let pdata of data.patterns) {
+            for (var i = this.patterns.length - 1; i >= data.patterns.length; i--) {
+                this.patterns.splice(i, 1)
+                this.wrapper.removeChild(this.wrapper.children[i])
+            }
 
-                let pattern = new Pattern(this, pdata)
-                this.patterns.push(pattern)
-                this.wrapper.appendChild(pattern.html)
-
+            for (var i = 0; i < data.patterns.length; i++) {
+                let pdata = data.patterns[i]
+                if (this.patterns[i]) {
+                    this.patterns[i].updateData(pdata)
+                } else {
+                    this.patterns[i] = new Pattern(this, pdata)
+                    this.wrapper.appendChild(this.patterns[i].html)
+                }
             }
 
         }

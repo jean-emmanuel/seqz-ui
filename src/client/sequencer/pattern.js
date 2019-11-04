@@ -18,20 +18,21 @@ class Pattern {
         this.preview = this.html.getElementsByClassName('preview')[0]
         this.preview.height = 44
         this.preview.width = 120
-        this.ctx = this.preview.getContext('2d', {
-            singleBuffered: true,
-            lowLatency: true,
-            desynchronized: true,
-            alpha: true
-        })
+        this.ctx = this.preview.getContext('2d')
         this.ctx.lineWidth = 2
         this.ctx.strokeStyle = cursorColor
 
-        this.empty = !data
+        this.updateData(data)
 
-        this.html.classList.toggle('empty', this.empty)
+    }
 
-        if (!this.empty) {
+    updateData(data) {
+
+        this.data = data
+
+        this.html.classList.toggle('empty', !this.data)
+
+        if (this.data) {
 
             this.title.innerHTML = `${data.id}: ${data.label}`
 
@@ -39,6 +40,10 @@ class Pattern {
             this.enabled = data.enabled
 
             this.html.classList.toggle('enabled', this.enabled)
+
+        } else {
+
+            this.title.innerHTML = ''
 
         }
 

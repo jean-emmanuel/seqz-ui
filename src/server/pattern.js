@@ -84,6 +84,18 @@ class Pattern {
 
     }
 
+    data() {
+
+        return {
+            id: this.id,
+            label: this.label,
+            length: this.length,
+            enabled: this.enabled,
+            sequences: this.sequences.map(x=>x?x.data():null),
+        }
+
+    }
+
 }
 
 module.exports = Pattern

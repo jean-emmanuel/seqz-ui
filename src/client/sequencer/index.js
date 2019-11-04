@@ -10,6 +10,8 @@ class SequencerPanel {
 
         this.leftPanel = document.getElementById('set-list')
         this.rightPanel = document.getElementById('sequencer-container')
+
+        this.sets = []
         this.columns = []
 
         this.build()
@@ -31,28 +33,40 @@ class SequencerPanel {
 
         // set list
         this.activeSet = engine.activeSet
-        this.leftPanel.innerHTML = ''
-        for (let sdata of engine.sets) {
-            var set = new Set(this, sdata)
-            if (this.activeSet == set.id) set.activate()
-            this.leftPanel.appendChild(set.html)
+
+        var sets = JSON.parse(engine.strSets).sets
+
+        for (var i = 0; i < sets.length; i++) {
+            let sdata = sets[i]
+            if (this.sets[i]) {
+                this.sets[i].updateData(sdata)
+            } else {
+                this.sets[i] = new Set(this, sdata)
+                this.leftPanel.appendChild(this.sets[i].html)
+            }
+            this.sets[i].toggle(this.activeSet == this.sets[i].id)
         }
 
 
-        // current set columns
-        this.rightPanel.innerHTML = ''
-        this.columns = []
 
-        var set = engine.sets[this.activeSet]
+        // current set columns
+
+        var set = sets[this.activeSet]
         if (!set) return
 
-        for (let cdata of set.columns) {
+        for (var i = this.columns.length - 1; i >= set.columns.length; i--) {
+            this.columns.splice(i, 1)
+            this.rightPanel.removeChild(this.rightPanel.children[i])
+        }
 
-            var column = new Column(this, cdata)
-
-            this.columns.push(column)
-            this.rightPanel.appendChild(column.html)
-
+        for (var i = 0; i < set.columns.length; i++) {
+            let cdata = set.columns[i]
+            if (this.columns[i]) {
+                this.columns[i].updateData(cdata)
+            } else {
+                this.columns[i] = new Column(this, cdata)
+                this.rightPanel.appendChild(this.columns[i].html)
+            }
         }
 
 

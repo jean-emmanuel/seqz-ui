@@ -1,4 +1,4 @@
-const Sequencer = require('./src/js/sequencer')
+const Sequencer = require('./src/server/sequencer')
 
 const seq = new Sequencer()
 require('./src/server/electron')
@@ -9,7 +9,7 @@ seq.on('ready', ()=>{
 
     var set = {columns:[]}
 
-    for (var i=0; i<3; i++) {
+    for (var i=0; i<20; i++) {
     set.columns.push({
         patterns: [
             null,
@@ -37,7 +37,7 @@ seq.on('ready', ()=>{
 
     seq.addSet(0, set)
     seq.addSet(1, set)
-    seq.addSet(2, set)
+    seq.addSet(2, {})
 
     seq.command('play')
 

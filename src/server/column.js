@@ -65,6 +65,16 @@ class Column {
 
     }
 
+    data() {
+
+        return {
+            id: this.id,
+            label: this.label,
+            patterns: this.patterns.map(x=>x?x.data():null),
+        }
+
+    }
+
 }
 
 module.exports = Column

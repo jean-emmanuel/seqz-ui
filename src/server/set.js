@@ -65,6 +65,16 @@ class Set {
 
     }
 
+    data() {
+
+        return {
+            id: this.id,
+            label: this.label,
+            columns: this.columns.map(x=>x?x.data():null),
+        }
+
+    }
+
 }
 
 module.exports = Set

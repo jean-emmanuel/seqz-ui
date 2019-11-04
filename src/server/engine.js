@@ -9,7 +9,7 @@ const {spawn} = require('child_process'),
       unix = require('unix-dgram'),
       fs = require('fs'),
       osc = require('osc/src/osc.js'),
-      seqzeroPath = require(__dirname + '/../../seqzero/seqzero')
+      seqzeroPath = __dirname + '/../../seqzero/seqzero'
 
 
 const FEEDBACK_SOCKET = '/tmp/seqz-ui-' + Math.random(),

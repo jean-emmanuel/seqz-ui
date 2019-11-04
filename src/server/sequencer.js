@@ -30,6 +30,7 @@ class Sequencer extends EventEmitter {
         // engine.on('/status/sequence', console.log)
 
         this.hasChangedFlag = false
+        this.strSets = JSON.stringify(this.data())
 
     }
 
@@ -96,6 +97,19 @@ class Sequencer extends EventEmitter {
     changed() {
 
         this.hasChangedFlag = true
+        this.strSets = JSON.stringify(this.data())
+
+    }
+
+    data() {
+
+        return {
+            bpm: this.id,
+            cursor: this.cursor,
+            playing: this.playing,
+            bypass: this.bypass,
+            sets: this.sets.map(x=>x?x.data():null),
+        }
 
     }
 

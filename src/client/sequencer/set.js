@@ -12,19 +12,26 @@ class Set {
                 <div class="title"></div>
             </div>
         `
-        this.id = data.id
-        this.title = this.html.getElementsByClassName('title')[0]
-        this.title.innerHTML = `${data.id}: ${data.label}`
 
         this.html.addEventListener('mousedown', ()=>{
             engine.setActiveSet(this.id)
         })
 
+        this.updateData(data)
+
     }
 
-    activate() {
+    updateData(data) {
+        
+        this.id = data.id
+        this.title = this.html.getElementsByClassName('title')[0]
+        this.title.innerHTML = `${data.id}: ${data.label}`
 
-        this.html.classList.add('active')
+    }
+
+    toggle(state) {
+
+        this.html.classList.toggle('active', state)
 
     }
 

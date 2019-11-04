@@ -59,6 +59,18 @@ class Sequence {
 
     }
 
+    data() {
+
+        return {
+            id: this.id,
+            address: this.address,
+            type: this.type,
+            note: this.note,
+            values: this.values,
+        }
+
+    }
+
 }
 
 module.exports = Sequence
